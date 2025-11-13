@@ -51,4 +51,22 @@ public class Skatista {
         
         this.nota[0] = nota;
     }
+    
+    public void removeNotaPorIndex(int index) {
+        if (index < 0 || index > 1) {
+            return;
+        }
+
+        this.nota[index] = 0;
+    }
+    
+    public void removeNotaPorValor(double valor) {
+        if (this.nota[0] == valor) {
+            this.nota[0] = 0;
+        }
+        
+        if (this.nota[1] == valor) {
+            this.nota[1] = 0;
+        }
+    }
 }
