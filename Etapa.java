@@ -1,25 +1,29 @@
-enum EtapaNome{
+public enum EtapaNome {
     Linha,
-    Obstaculo,  
+    Obstaculo
 }
-public class Etapa{
-    EtapaNome nome;
-    Obstaculo[] obstaculos;
-    
-    public Etapa(EtapaNome nome, Obstaculo[] obstaculos){
-    this.nome = EtapaNome;
-    }
-    public Etapanome getNome(){
-    return this.Etapanome;
-    }
-    public Obstaculo[] getObstaculo(){
-    return this.Obstaculo[];
-    }
-    public void setNome(EtapaNome nome){
-    
-    }
-    public void setObstaculo[](obstaculos){
-}
+public class Etapa {
+    private EtapaNome nome;
+    private Obstaculo[] obstaculos;
 
-    
+    public Etapa(EtapaNome nome, Obstaculo[] obstaculos) {
+        this.nome = nome;
+        this.obstaculos = obstaculos;
+    }
+
+    public EtapaNome getNome() {
+        return this.nome;
+    }
+
+    public Obstaculo[] getObstaculos() {
+        return this.obstaculos;
+    }
+
+    public void setNome(EtapaNome nome) {
+        this.nome = nome;
+    }
+
+    public void setObstaculos(Obstaculo[] obstaculos) {
+        this.obstaculos = obstaculos;
+    }
 }
