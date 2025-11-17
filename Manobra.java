@@ -37,5 +37,13 @@ public class Manobra {
     public double getDificuldade(){
         return this.dificuldade = dificuldade;    
     }
+
+    public void setPontos(double pontos) {
+        this.pontos = pontos;
+    }
+
+    public void setDificuldade(double dificuldade) {
+        this.dificuldade = dificuldade;
+    }
 }
 
