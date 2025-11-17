@@ -8,6 +8,25 @@ public class Skatista {
     SkatistaEstilo skatistaEstilo;
     int idade;
     double nota[] = {0, 0};
+
+    String[] randomNomes = [
+        "Axel Rodriguez",
+        "Skyler Vance",
+        "Dusty Callahan",
+        "Blaze Sterling",
+        "Jet McCoy",
+        "Titus Thorne",
+        "Zane Kincaid",
+        "Maverick Quinn",
+        "Viper Jensen",
+        "Ryder Stone"
+    ];
+
+    public Skatista() {
+        this.nome = this.getRandomNome();
+        this.skatistaEstilo = this.getRandomSkatistaEstilo();
+        this.idade = this.getRandomIdade();
+    }
     
     public Skatista(String nome, SkatistaEstilo skatistaEstilo, int idade) {
         this.nome = nome;
@@ -68,5 +87,18 @@ public class Skatista {
         if (this.nota[1] == valor) {
             this.nota[1] = 0;
         }
+    }
+
+    private String getRandomNome() {
+        // randomNomes
+    }
+
+    private SkatistaEstilo getRandomSkatistaEstilo() {
+        // REGULAR,
+        // GOOFY
+    }
+
+    private int getRandomIdade() {
+        // 18 - 40
     }
 }
