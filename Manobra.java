@@ -31,11 +31,17 @@ public class Manobra {
     public ManobraNome getManobraNome(){
         return this.nome = nome;
     }
+    
     public double getPontos(){
         return this.pontos = pontos;
     }
+    
     public double getDificuldade(){
         return this.dificuldade = dificuldade;    
+    }
+
+    public void setNome(ManobraNome nome) {
+        this.nome = nome;
     }
 
     public void setPontos(double pontos) {
