@@ -1,5 +1,32 @@
+public class Manobra {
+    ManobraNome nome;
+    double pontos;
+    double dificuldade;
+    
+    public Manobra(ManobraNome nome, double pontos, double dificuldade) {
+        this.nome = nome;
+        this.dificuldade = dificuldade;
+    }
+    
+    public ManobraNome getManobraNome(){
+        return this.nome = nome;
+    }
+    
+    public double getDificuldade(){
+        return this.dificuldade = dificuldade;    
+    }
+
+    public void setNome(ManobraNome nome) {
+        this.nome = nome;
+    }
+
+    public void setDificuldade(double dificuldade) {
+        this.dificuldade = dificuldade;
+    }
+}
+
 enum ManobraNome {
-    KICKFLIP,
+    KICKFLIP, 
     CABALERIAL_FLIP,
     NOLLIE_BIGSPIN_HEELFLIP,
     HEELFLIP,
@@ -16,40 +43,3 @@ enum ManobraNome {
     SWITCH_KICKFLIP_720,
     DOUBLE_FLIP
 }
-
-public class Manobra {
-    ManobraNome nome;
-    double pontos;
-    double dificuldade;
-    
-    public Manobra(ManobraNome nome, double pontos, double dificuldade) {
-        this.nome = nome;
-        this.pontos = pontos;
-        this.dificuldade = dificuldade;
-    }
-    
-    public ManobraNome getManobraNome(){
-        return this.nome = nome;
-    }
-    
-    public double getPontos(){
-        return this.pontos = pontos;
-    }
-    
-    public double getDificuldade(){
-        return this.dificuldade = dificuldade;    
-    }
-
-    public void setNome(ManobraNome nome) {
-        this.nome = nome;
-    }
-
-    public void setPontos(double pontos) {
-        this.pontos = pontos;
-    }
-
-    public void setDificuldade(double dificuldade) {
-        this.dificuldade = dificuldade;
-    }
-}
-
