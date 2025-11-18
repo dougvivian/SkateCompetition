@@ -1,11 +1,3 @@
-enum ObstaculoNome {
-    ESCADA,
-    CORRIMAO,
-    RAMP,
-    MESA,
-    HIDRANTE
-}
-
 public class Obstaculo {
     ObstaculoNome nome;
     double pontos;
@@ -14,7 +6,6 @@ public class Obstaculo {
     public Obstaculo(ObstaculoNome nome, double pontos, double dificuldade) {
         this.nome = nome;
         this.pontos = pontos;
-        this.dificuldade = dificuldade;
     }
     
     public ObstaculoNome getNome() {
@@ -25,10 +16,6 @@ public class Obstaculo {
         return this.pontos;
     }
     
-    public double getDificuldade() {
-        return this.dificuldade;
-    }
-    
     public void setNome(ObstaculoNome nome) {
         this.nome = nome;
     }
@@ -36,8 +23,12 @@ public class Obstaculo {
     public void setPontos(double pontos) {
         this.pontos = pontos;
     }
-    
-    public void setDificuldade(double dificuldade) {
-        this.dificuldade = dificuldade;
-    }
+}
+
+enum ObstaculoNome {
+    ESCADA,
+    CORRIMAO,
+    RAMP,
+    MESA,
+    HIDRANTE
 }
