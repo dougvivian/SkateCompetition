@@ -1,15 +1,16 @@
-enum SkatistaEstilo {
-    REGULAR,
-    GOOFY
-}
+import java.util.Random;
 
 public class Skatista {
     String nome;
-    SkatistaEstilo skatistaEstilo;
+    String skatistaEstilo;
     int idade;
     double nota[] = {0, 0};
 
-    String[] randomNomes = [
+    /**
+     * Acrescentar nacionalidade aos oponentes
+     * Transformar isso num vetor de objetos
+     */
+    String[] randomNomes = {
         "Axel Rodriguez",
         "Skyler Vance",
         "Dusty Callahan",
@@ -20,15 +21,15 @@ public class Skatista {
         "Maverick Quinn",
         "Viper Jensen",
         "Ryder Stone"
-    ];
+    };
 
     public Skatista() {
-        this.nome = this.getRandomNome();
-        this.skatistaEstilo = this.getRandomSkatistaEstilo();
-        this.idade = this.getRandomIdade();
+        this.nome = this.getNomeAleatorio();
+        this.skatistaEstilo = this.getSkatistaEstiloAleatorio();
+        this.idade = this.getIdadeAleatoria();
     }
     
-    public Skatista(String nome, SkatistaEstilo skatistaEstilo, int idade) {
+    public Skatista(String nome, String skatistaEstilo, int idade) {
         this.nome = nome;
         this.skatistaEstilo = skatistaEstilo;
         this.idade = idade;
@@ -38,7 +39,7 @@ public class Skatista {
         return this.nome;
     }
     
-    public SkatistaEstilo getSkatistaEstilo() {
+    public String getSkatistaEstilo() {
         return this.skatistaEstilo;
     }
     
@@ -54,7 +55,7 @@ public class Skatista {
         this.nome = nome;
     }
     
-    public void setEstilo(SkatistaEstilo skatistaEstilo) {
+    public void setEstilo(String skatistaEstilo) {
         this.skatistaEstilo = skatistaEstilo;
     }
     
@@ -62,7 +63,7 @@ public class Skatista {
         this.idade = idade;
     }
     
-    public void addNota(int nota) {
+    public void adicionarNota(int nota) {
         if (this.nota[0] > 0) {
             this.nota[1] = nota;
             return;
@@ -88,17 +89,33 @@ public class Skatista {
             this.nota[1] = 0;
         }
     }
-
-    private String getRandomNome() {
-        // randomNomes
+    
+    public String toString() {
+        return "Nome: " + this.nome + "; Estilo: " + this.skatistaEstilo + "; Idade: " + this.idade;
     }
 
-    private SkatistaEstilo getRandomSkatistaEstilo() {
-        // REGULAR,
-        // GOOFY
+    private String getNomeAleatorio() {
+        Random random = new Random();
+        int numeroAleatorio = random.nextInt(10);
+        return randomNomes[numeroAleatorio];
     }
 
-    private int getRandomIdade() {
-        // 18 - 40
+    private String getSkatistaEstiloAleatorio() {
+        Random random = new Random();
+        int numeroAleatorio = random.nextInt(2);
+        
+        if (numeroAleatorio == 0) {
+            return "Regular";
+        }
+        
+        return "Goofy";
+    }
+
+    private int getIdadeAleatoria() {
+        int min = 18;
+        int max = 40;
+
+        Random random = new Random();
+        return random.nextInt((max - min) + 1) + min;
     }
 }
