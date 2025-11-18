@@ -1,45 +1,85 @@
 import java.util.Scanner;
 
+/*
+ * Colocar os fluxos do que está acontecendo na tela
+ * Pro usuário não se perder
+ */
+
 public class Main {
-    Scanner scanner = new Scanner(System.in);
+    static Scanner scanner = new Scanner(System.in);
+    static Skatista skatista;
+    static Skatista oponenteA;
+    static Skatista oponenteB;
 
     public static void Main() {
-        System.out.println("Informe o nome do seu personagem skatista:");
-        nome = scanner.next();
-
-        System.out.println("Informe o estilo ('REGULAR' ou 'GOOFY'):");
-        skatistaEstilo = scanner.next();
-
-        System.out.println("Informe a idade:");
-        idade = scanner.nextInt();
-        
-        Skatista skatista = new Skatista(nome, skatistaEstilo, idade);
-        Skatista oponenteA = new Skatista();
-        Skatista oponenteB = new Skatista();
+        criarPersonagens();
 
         System.out.println("Boas-vindas ao Skate Competition, " + skatista.getNome());
 
         int opcao = 0;
         
-        System.out.println("Informe a opção");
-        opcao = scanner.nextInt();
+        do {
+            System.out.println("Informe a opção");
+            System.out.println("1: Editar personagem");
+            System.out.println("2: Mostrar competidores");
+            System.out.println("3: Iniciar jogo");
+            opcao = scanner.nextInt();
         
-        while (opcao != 9) {
             switch (opcao) {
                 case 1:
-                    System.out.println("opcao 1");
+                    System.out.println("Editar personagem");
+                    System.out.println("Informe o novo nome do personagem:");
+                    skatista.setNome(scanner.next());
+                    System.out.println("Informe o novo estilo do personagem:");
+                    skatista.setEstilo(scanner.next());
+                    System.out.println("Informe a nova idade do personagem:");
+                    skatista.setIdade(scanner.nextInt());
+                    System.out.println("Personagem atualizado!");
+                    System.out.println(skatista);
                     break;
                 case 2:
-                    System.out.println("opcao 2");
+                    System.out.println(skatista);
+                    System.out.println(oponenteA);
+                    System.out.println(oponenteB);
                     break;
-                case 9:
-                    System.out.println("opcao 9 finalizou");
+                case 3:
+                    System.out.println("Começou...");
+                    comecarJogo();
                     break;
                 default:
                     System.out.println("Opção inválida, escolha uma nova opção");
             }
-            
-            opcao = scanner.nextInt();
+        } while (opcao != 9);
+    }
+    
+    static private void comecarJogo() {
+        // husahusasahu
+    }
+    
+    static private void criarPersonagens() {
+        String nome;
+        String skatistaEstilo;
+        int idade;
+        int opcaoEstilo;
+
+        System.out.println("Informe o nome do seu personagem skatista:");
+        nome = scanner.next();
+        
+        System.out.println("Informe o estilo (0: Regular; 1: Goofy):");
+        opcaoEstilo = scanner.nextInt();
+        if (opcaoEstilo  == 0) {
+            skatistaEstilo = "Regular";
+        } else if (opcaoEstilo  == 1) {
+            skatistaEstilo = "Goofy";
+        } else {
+            skatistaEstilo = "Regular";
         }
+
+        System.out.println("Informe a idade:");
+        idade = scanner.nextInt();
+        
+        skatista = new Skatista(nome, skatistaEstilo, idade);
+        oponenteA = new Skatista();
+        oponenteB = new Skatista();
     }
 }
