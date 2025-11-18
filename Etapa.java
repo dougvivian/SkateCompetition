@@ -1,7 +1,3 @@
-public enum EtapaNome {
-    Linha,
-    Obstaculo
-}
 public class Etapa {
     private EtapaNome nome;
     private Obstaculo[] obstaculos;
@@ -26,4 +22,9 @@ public class Etapa {
     public void setObstaculos(Obstaculo[] obstaculos) {
         this.obstaculos = obstaculos;
     }
+}
+
+enum EtapaNome {
+    Linha,
+    Obstaculo
 }
