@@ -5,6 +5,7 @@ public class Skatista {
     String skatistaEstilo;
     int idade;
     double nota[] = {0, 0};
+    Random random = new Random();
 
     /**
      * Acrescentar nacionalidade aos oponentes
@@ -95,13 +96,11 @@ public class Skatista {
     }
 
     private String getNomeAleatorio() {
-        Random random = new Random();
         int numeroAleatorio = random.nextInt(10);
         return randomNomes[numeroAleatorio];
     }
 
     private String getSkatistaEstiloAleatorio() {
-        Random random = new Random();
         int numeroAleatorio = random.nextInt(2);
         
         if (numeroAleatorio == 0) {
@@ -115,7 +114,6 @@ public class Skatista {
         int min = 18;
         int max = 40;
 
-        Random random = new Random();
         return random.nextInt((max - min) + 1) + min;
     }
 }
