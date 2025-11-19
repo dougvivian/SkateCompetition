@@ -60,20 +60,21 @@ public class Main {
         String nome;
         String skatistaEstilo;
         int idade;
-        int opcaoEstilo;
+        int opcaoEstilo = 0;
 
         System.out.println("Informe o nome do seu personagem skatista:");
         nome = scanner.next();
-        
-        System.out.println("Informe o estilo (0: Regular; 1: Goofy):");
-        opcaoEstilo = scanner.nextInt();
-        if (opcaoEstilo  == 0) {
-            skatistaEstilo = "Regular";
-        } else if (opcaoEstilo  == 1) {
-            skatistaEstilo = "Goofy";
-        } else {
-            skatistaEstilo = "Regular";
-        }
+
+        do {
+            System.out.println("Informe o estilo (1: Regular; 2: Goofy):");
+            opcaoEstilo = scanner.nextInt();
+
+            if (opcaoEstilo  == 1) {
+                skatistaEstilo = "Regular";
+            } else if (opcaoEstilo  == 2) {
+                skatistaEstilo = "Goofy";
+            }
+        } while (opcaoEstilo != 0 || opcaoEstilo != 1)
 
         System.out.println("Informe a idade:");
         idade = scanner.nextInt();
