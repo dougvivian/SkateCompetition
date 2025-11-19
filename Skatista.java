@@ -72,7 +72,7 @@ public class Skatista {
         this.nota[0] = nota;
     }
     
-    public void removeNotaPorIndex(int index) {
+    public void removerNotaPorIndex(int index) {
         if (index < 0 || index > 1) {
             return;
         }
@@ -80,7 +80,7 @@ public class Skatista {
         this.nota[index] = 0;
     }
     
-    public void removeNotaPorValor(double valor) {
+    public void removerNotaPorValor(double valor) {
         if (this.nota[0] == valor) {
             this.nota[0] = 0;
         }
