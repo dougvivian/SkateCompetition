@@ -1,9 +1,8 @@
 public class Obstaculo {
     ObstaculoNome nome;
     double pontos;
-    double dificuldade;
     
-    public Obstaculo(ObstaculoNome nome, double pontos, double dificuldade) {
+    public Obstaculo(ObstaculoNome nome, double pontos) {
         this.nome = nome;
         this.pontos = pontos;
     }
@@ -28,7 +27,7 @@ public class Obstaculo {
 enum ObstaculoNome {
     ESCADA,
     CORRIMAO,
-    RAMP,
+    RAMPA,
     MESA,
     HIDRANTE
 }
