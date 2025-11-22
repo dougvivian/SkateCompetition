@@ -26,5 +26,5 @@ public class Etapa {
 
 enum EtapaNome {
     LINHA,
-    OBSTACULO
+    IMPACTO
 }
