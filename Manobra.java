@@ -1,9 +1,8 @@
 public class Manobra {
     ManobraNome nome;
-    double pontos;
     double dificuldade;
     
-    public Manobra(ManobraNome nome, double pontos, double dificuldade) {
+    public Manobra(ManobraNome nome, double dificuldade) {
         this.nome = nome;
         this.dificuldade = dificuldade;
     }
