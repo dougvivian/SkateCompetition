@@ -25,9 +25,13 @@ public class Obstaculo {
 }
 
 enum ObstaculoNome {
-    ESCADA,
-    CORRIMAO,
+    CAIXOTE,
+    HIDRANTE,
+    GAP_COM_RAMPA,
+    PIRAMIDE,
     RAMPA,
     MESA,
-    HIDRANTE
+    CORRIMAO,
+    CORRIMAO_CURVADO,
+    ESCADA,
 }
