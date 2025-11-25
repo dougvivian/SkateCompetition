@@ -7,13 +7,43 @@ import java.util.Scanner;
 
 public class Main {
     static Scanner scanner = new Scanner(System.in);
+
     static Skatista skatista;
     static Skatista oponenteA;
     static Skatista oponenteB;
+    
+    static Obstaculo caixote;
+    static Obstaculo hidrante;
+    static Obstaculo gapComRampa;
+    static Obstaculo piramide;
+    static Obstaculo rampa;
+    static Obstaculo mesa;
+    static Obstaculo corrimao;
+    static Obstaculo corrimaoCurvado;
+    static Obstaculo escada;
+    
+    static Manobra frontsideOllie;
+    static Manobra kickflip;
+    static Manobra heelflip;
+    static Manobra fakieFlip;
+    static Manobra boardSlide;
+    static Manobra doubleFlip;
+    static Manobra lateFlip;
+    static Manobra frontsideFlip;
+    static Manobra backslideFlip;
+    static Manobra hardFlip;
+    static Manobra kickflip360;
+    static Manobra cabalerialFlip;
+    static Manobra nollieBigspinHeelflip;
+    static Manobra bluntSlide;
+    static Manobra boardSlideFlipOut;
+    static Manobra switchKickflip720;
 
     public static void Main() {
         criarPersonagens();
         exibirMenuInicial();
+        iniciarObstaculos();
+        iniciarManobras();
         comecarJogo();
     }
     
@@ -73,6 +103,7 @@ public class Main {
                     
                     System.out.println("Informe a nova idade do personagem:");
                     skatista.setIdade(scanner.nextInt());
+
                     System.out.println("Personagem atualizado!");
                     System.out.println(skatista);
                     break;
@@ -90,38 +121,66 @@ public class Main {
         } while (opcao != 3);
     }
     
+    static private void iniciarObstaculos() {
+        caixote = new Obstaculo(ObstaculoNome.CAIXOTE, 1.7);
+        hidrante = new Obstaculo(ObstaculoNome.HIDRANTE, 2);
+        gapComRampa = new Obstaculo(ObstaculoNome.GAP_COM_RAMPA, 2.5);
+        piramide = new Obstaculo(ObstaculoNome.PIRAMIDE, 3.5);
+        rampa = new Obstaculo(ObstaculoNome.RAMPA, 4.3);
+        mesa = new Obstaculo(ObstaculoNome.MESA, 5);
+        corrimao = new Obstaculo(ObstaculoNome.CORRIMAO, 6);
+        corrimaoCurvado = new Obstaculo(ObstaculoNome.CORRIMAO_CURVADO, 7.4);
+        escada = new Obstaculo(ObstaculoNome.ESCADA, 8);
+    }
+    
+    static private void iniciarManobras() {
+        frontsideOllie = new Manobra(ManobraNome.FRONTSIDE_OLLIE, 0.5);
+        kickflip = new Manobra(ManobraNome.KICKFLIP, 1);
+        heelflip = new Manobra(ManobraNome.HEELFLIP, 1);
+        fakieFlip = new Manobra(ManobraNome.FAKIE_FLIP, 1);
+        boardSlide= new Manobra(ManobraNome.BOARD_SLIDE, 1);
+        doubleFlip = new Manobra(ManobraNome.DOUBLE_FLIP, 2.5);
+        lateFlip = new Manobra(ManobraNome.LATE_FLIP, 3.5);
+        frontsideFlip = new Manobra(ManobraNome.FRONTSIDE_FLIP, 4);
+        backslideFlip = new Manobra(ManobraNome.BACKSIDE_FLIP, 5);
+        hardFlip = new Manobra(ManobraNome.HARD_FLIP, 5.5);
+        kickflip360 = new Manobra(ManobraNome.KICKFLIP_360, 6);
+        cabalerialFlip= new Manobra(ManobraNome.CABALERIAL_FLIP, 7);
+        nollieBigspinHeelflip = new Manobra(ManobraNome.NOLLIE_BIGSPIN_HEELFLIP, 7.5);
+        bluntSlide = new Manobra(ManobraNome.BLUNT_SLIDE, 7.8);
+        boardSlideFlipOut = new Manobra(ManobraNome.BOARD_SLIDE_FLIP_OUT, 8);
+        switchKickflip720 = new Manobra(ManobraNome.SWITCH_KICKFLIP_720, 9.5);
+    }
+    
     static private void comecarJogo() {
-        Obstaculo hidrante = new Obstaculo(ObstaculoNome.HIDRANTE, 2);
-        Obstaculo rampa = new Obstaculo(ObstaculoNome.RAMPA, 4);
-        Obstaculo mesa = new Obstaculo(ObstaculoNome.MESA, 5);
-        Obstaculo corrimao = new Obstaculo(ObstaculoNome.CORRIMAO, 6);
-        Obstaculo escada = new Obstaculo(ObstaculoNome.ESCADA, 8);
-        
-        Manobra frontsideOllie = new Manobra(ManobraNome.FRONTSIDE_OLLIE, 0.5);
-        Manobra kickflip = new Manobra(ManobraNome.KICKFLIP, 1);
-        Manobra heelflip = new Manobra(ManobraNome.HEELFLIP, 1);
-        Manobra fakieFlip = new Manobra(ManobraNome.FAKIE_FLIP, 1);
-        Manobra boardSlide= new Manobra(ManobraNome.BOARD_SLIDE, 1);
-        Manobra doubleFlip = new Manobra(ManobraNome.DOUBLE_FLIP, 2.5);
-        Manobra lateFlip = new Manobra(ManobraNome.LATE_FLIP, 3.5);
-        Manobra frontsideFlip = new Manobra(ManobraNome.FRONTSIDE_FLIP, 4);
-        Manobra backslideFlip = new Manobra(ManobraNome.BACKSIDE_FLIP, 5);
-        Manobra hardFlip = new Manobra(ManobraNome.HARD_FLIP, 5.5);
-        Manobra kickflip360 = new Manobra(ManobraNome.KICKFLIP_360, 6);
-        Manobra cabalerialFlip= new Manobra(ManobraNome.CABALERIAL_FLIP, 7);
-        Manobra nollieBigspinHeelflip = new Manobra(ManobraNome.NOLLIE_BIGSPIN_HEELFLIP, 7.5);
-        Manobra bluntSlide = new Manobra(ManobraNome.BLUNT_SLIDE, 7.8);
-        Manobra boardSlideFlipOut = new Manobra(ManobraNome.BOARD_SLIDE_FLIP_OUT, 8);
-        Manobra switchKickflip720 = new Manobra(ManobraNome.SWITCH_KICKFLIP_720, 9.5);
-        
         /**
          * Iniciar etapa Linha
          * - udcghshcbsd
-         * Iniciar etapa Obstáculo (isso tem que mudar de nome)
+         * Iniciar etapa Impacto (isso tem que mudar de nome)
          * - cjnsdcjnsd
          */
         
-        // new Etapa(EtapaNome.LINHA);
-        // new Etapa(EtapaNome.IMPACTO);
+        int opcao;
+        Obstaculo[] obstaculosLista = new Obstaculo[5];
+
+        System.out.println("Escolha 5 obstáculos da lista abaixo para começar (digite um número de cada vez):");
+        System.out.println("1: caixote");
+        System.out.println("2: hidrante");
+        System.out.println("3: gapComRampa");
+        System.out.println("4: piramide");
+        System.out.println("5: rampa");
+        System.out.println("6: mesa");
+        System.out.println("7: corrimao");
+        System.out.println("8: corrimaoCurvado");
+        System.out.println("9: escada");
+        
+        switch (opcao) {
+            case 1:
+                obstaculosLista[n] = caixote;
+                break;
+        }
+        
+        // Etapa linha = new Etapa(EtapaNome.LINHA);
+        // Etapa impacto = new Etapa(EtapaNome.IMPACTO);
     }
 }
