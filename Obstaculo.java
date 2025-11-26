@@ -22,6 +22,10 @@ public class Obstaculo {
     public void setPontos(double pontos) {
         this.pontos = pontos;
     }
+    
+    public String toString() {
+        return this.nome.toString().toLowerCase().substring(0, 1).toUpperCase() + this.nome.toString().toLowerCase().substring(1) + " (pontos: " + this.pontos + ")";
+    }
 }
 
 enum ObstaculoNome {
