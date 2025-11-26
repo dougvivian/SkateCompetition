@@ -30,7 +30,7 @@ public class Main {
     static Manobra doubleFlip;
     static Manobra lateFlip;
     static Manobra frontsideFlip;
-    static Manobra backslideFlip;
+    static Manobra backsideFlip;
     static Manobra hardFlip;
     static Manobra kickflip360;
     static Manobra cabalerialFlip;
@@ -65,7 +65,7 @@ public class Main {
             } else if (opcaoEstilo == 2) {
                 skatistaEstilo = "Goofy";
             }
-        } while (opcaoEstilo != 1 || opcaoEstilo != 2);
+        } while (opcaoEstilo < 1 || opcaoEstilo > 2);
 
         System.out.println("Informe a idade:");
         idade = scanner.nextInt();
@@ -142,7 +142,7 @@ public class Main {
         doubleFlip = new Manobra(ManobraNome.DOUBLE_FLIP, 2.5);
         lateFlip = new Manobra(ManobraNome.LATE_FLIP, 3.5);
         frontsideFlip = new Manobra(ManobraNome.FRONTSIDE_FLIP, 4);
-        backslideFlip = new Manobra(ManobraNome.BACKSIDE_FLIP, 5);
+        backsideFlip = new Manobra(ManobraNome.BACKSIDE_FLIP, 5);
         hardFlip = new Manobra(ManobraNome.HARD_FLIP, 5.5);
         kickflip360 = new Manobra(ManobraNome.KICKFLIP_360, 6);
         cabalerialFlip= new Manobra(ManobraNome.CABALERIAL_FLIP, 7);
@@ -160,24 +160,130 @@ public class Main {
          * - cjnsdcjnsd
          */
         
-        int opcao;
+        int opcaoObstaculo = 0;
         Obstaculo[] obstaculosLista = new Obstaculo[5];
 
+        System.out.println("Vai começar a primeira etapa chamada Linha!");
         System.out.println("Escolha 5 obstáculos da lista abaixo para começar (digite um número de cada vez):");
-        System.out.println("1: caixote");
-        System.out.println("2: hidrante");
-        System.out.println("3: gapComRampa");
-        System.out.println("4: piramide");
-        System.out.println("5: rampa");
-        System.out.println("6: mesa");
-        System.out.println("7: corrimao");
-        System.out.println("8: corrimaoCurvado");
-        System.out.println("9: escada");
+        System.out.println("1: " + caixote);
+        System.out.println("2: " + hidrante);
+        System.out.println("3: " + gapComRampa);
+        System.out.println("4: " + piramide);
+        System.out.println("5: " + rampa);
+        System.out.println("6: " + mesa);
+        System.out.println("7: " + corrimao);
+        System.out.println("8: " + corrimaoCurvado);
+        System.out.println("9: " + escada);
         
-        switch (opcao) {
-            case 1:
-                obstaculosLista[n] = caixote;
-                break;
+        int i;
+        for (i = 0; i < 5; i++) {
+            do {
+                System.out.println("Escolha obstáculo de número " + (i + 1));
+                opcaoObstaculo = scanner.nextInt();
+                switch (opcaoObstaculo) {
+                    case 1:
+                        obstaculosLista[i] = caixote;
+                        break;
+                    case 2:
+                        obstaculosLista[i] = hidrante;
+                        break;
+                    case 3:
+                        obstaculosLista[i] = gapComRampa;
+                        break;
+                    case 4:
+                        obstaculosLista[i] = piramide;
+                        break;
+                    case 5:
+                        obstaculosLista[i] = rampa;
+                        break;
+                    case 6:
+                        obstaculosLista[i] = mesa;
+                        break;
+                    case 7:
+                        obstaculosLista[i] = corrimao;
+                        break;
+                    case 8:
+                        obstaculosLista[i] = corrimaoCurvado;
+                        break;
+                    case 9:
+                        obstaculosLista[i] = escada;
+                        break;
+                    }
+            } while(opcaoObstaculo < 1 || opcaoObstaculo > 9);
+        }
+        
+        int opcaoManobra= 0;
+        Manobra[] manobrasLista = new Manobra[5];
+
+        System.out.println("Escolha 5 manobras da lista abaixo para começar (digite um número de cada vez):");
+        System.out.println("1: Front Ollie");
+        System.out.println("2: Kickflip");
+        System.out.println("3: Heelflip");
+        System.out.println("4: Fakie flip");
+        System.out.println("5: Board Slide");
+        System.out.println("6: Late Flip");
+        System.out.println("7: Frontside Flip");
+        System.out.println("8: Backside Flip");
+        System.out.println("9: Hard Flip");
+        System.out.println("10: Kickflip 360");
+        System.out.println("11: Cabalerial Flip");
+        System.out.println("12: Nollie Bigspin Heelflip");
+        System.out.println("13: Blunt Slide");
+        System.out.println("14: Board Slide Flip Out");
+        System.out.println("15: Switch Kickflip 720");
+        
+        for (i = 0; i < 5; i++) {
+            do {
+                System.out.println("Escolha a manobra para executar no obstáculo " + obstaculosLista[i].getNome());
+                opcaoManobra = scanner.nextInt();
+                switch (opcaoManobra) {
+                    case 1:
+                        manobrasLista[i] = frontsideOllie;
+                        break;
+                    case 2:
+                        manobrasLista[i] = kickflip;
+                        break;
+                    case 3:
+                        manobrasLista[i] = heelflip;
+                        break;
+                    case 4:
+                        manobrasLista[i] = fakieFlip;
+                        break;
+                    case 5:
+                        manobrasLista[i] = boardSlide;
+                        break;
+                    case 6:
+                        manobrasLista[i] = lateFlip;
+                        break;
+                    case 7:
+                        manobrasLista[i] = frontsideFlip;
+                        break;
+                    case 8:
+                        manobrasLista[i] = backsideFlip;
+                        break;
+                    case 9:
+                        manobrasLista[i] = hardFlip;
+                        break;
+                    case 10:
+                        manobrasLista[i] = kickflip360;
+                        break;
+                    case 11:
+                        manobrasLista[i] = cabalerialFlip;
+                        break;
+                    case 12:
+                        manobrasLista[i] = nollieBigspinHeelflip;
+                        break;
+                    case 13:
+                        manobrasLista[i] = bluntSlide;
+                        break;
+                    case 14:
+                        manobrasLista[i] = boardSlideFlipOut;
+                        break;
+                    case 15:
+                        manobrasLista[i] = switchKickflip720;
+                        break;
+                    }
+            } while(opcaoObstaculo < 1 || opcaoObstaculo > 9);
         }
         
         // Etapa linha = new Etapa(EtapaNome.LINHA);
