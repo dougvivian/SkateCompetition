@@ -1,5 +1,5 @@
 import java.util.Scanner;
-
+import java.util.Random;
 /*
  * Colocar os fluxos do que está acontecendo na tela
  * Pro usuário não se perder
@@ -151,12 +151,12 @@ public class Main {
         switchKickflip720 = new Manobra(ManobraNome.SWITCH_KICKFLIP_720, 9.5);
     }
 
+
+    
     static private void comecarJogo() {
         /**
          * Iniciar etapa Linha
-         * - udcghshcbsd
          * Iniciar etapa Impacto (isso tem que mudar de nome)
-         * - cjnsdcjnsd
          */
 
         int opcaoObstaculo = 0;
@@ -208,10 +208,21 @@ public class Main {
                         obstaculosLista[i] = escada;
                         break;
                 }
+                System.out.println("Você escolheu o obstáculo " + obstaculosLista[i]);  
             } while (opcaoObstaculo < 1 || opcaoObstaculo > 9);
         }
+        
+        //criei o objeto Etapa linha
+        Etapa linha = new Etapa(EtapaNome.LINHA, obstaculosLista);
+        System.out.println("\nETAPA: " + linha.getNome());
+        System.out.println("Obstáculos escolhidos: ");
 
+        for (Obstaculo o : linha.getObstaculos()) {
+            System.out.println("- " + o);
+            }
+        
         int opcaoManobra = 0;
+        
         Manobra[] manobrasLista = new Manobra[5];
 
         System.out.println("Escolha 5 manobras da lista abaixo para começar (digite um número de cada vez):");
@@ -233,7 +244,9 @@ public class Main {
 
         for (i = 0; i < 5; i++) {
             do {
+                if (obstaculosLista[i] != null) {
                 System.out.println("Escolha a manobra para executar no obstáculo " + obstaculosLista[i].getNome());
+                }
                 opcaoManobra = scanner.nextInt();
                 switch (opcaoManobra) {
                     case 1:
@@ -282,10 +295,14 @@ public class Main {
                         manobrasLista[i] = switchKickflip720;
                         break;
                 }
-            } while (opcaoObstaculo < 1 || opcaoObstaculo > 9);
+                System.out.println("Você escolheu a manobra: "+ manobrasLista[i]+ " para o obstáculo: " + obstaculosLista[i]); 
+            } while (opcaoManobra < 1 || opcaoManobra > 15);
         }
-
         // Etapa linha = new Etapa(EtapaNome.LINHA);
+        // Etapa impacto = new Etapa(EtapaNome.IMPACTO);
+    }
+}
+
         // Etapa impacto = new Etapa(EtapaNome.IMPACTO);
     }
 }
