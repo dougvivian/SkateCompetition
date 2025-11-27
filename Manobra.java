@@ -1,18 +1,18 @@
 public class Manobra {
     ManobraNome nome;
     double dificuldade;
-    
+
     public Manobra(ManobraNome nome, double dificuldade) {
         this.nome = nome;
         this.dificuldade = dificuldade;
     }
-    
-    public ManobraNome getManobraNome(){
-        return this.nome = nome;
+
+    public ManobraNome getManobraNome() {
+        return this.nome;
     }
-    
-    public double getDificuldade(){
-        return this.dificuldade = dificuldade;    
+
+    public double getDificuldade() {
+        return this.dificuldade;
     }
 
     public void setNome(ManobraNome nome) {
@@ -22,9 +22,10 @@ public class Manobra {
     public void setDificuldade(double dificuldade) {
         this.dificuldade = dificuldade;
     }
-    
+
     public String toString() {
-        return this.nome.toString().toLowerCase().substring(0, 1).toUpperCase() + this.nome.toString().toLowerCase().substring(1) + " (pontos: " + this.dificuldade + ")";
+        return this.nome.toString().toLowerCase().substring(0, 1).toUpperCase()
+                + this.nome.toString().toLowerCase().substring(1) + " (pontos: " + this.dificuldade + ")";
     }
 }
 
