@@ -303,6 +303,3 @@ public class Main {
     }
 }
 
-        // Etapa impacto = new Etapa(EtapaNome.IMPACTO);
-    }
-}
