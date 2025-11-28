@@ -25,7 +25,7 @@ public class Manobra {
 
     public String toString() {
         return this.nome.toString().toLowerCase().substring(0, 1).toUpperCase()
-                + this.nome.toString().toLowerCase().substring(1) + " (pontos: " + this.dificuldade + ")";
+                + this.nome.toString().toLowerCase().substring(1) + " (dificuldade: " + this.dificuldade + ")";
     }
 }
 
