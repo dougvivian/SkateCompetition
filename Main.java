@@ -41,6 +41,10 @@ public class Main {
 
     static Obstaculo[] obstaculosLista;
 
+    static final String RESET = "\u001B[0m";
+    static final String RED = "\u001B[31m";
+    static final String GREEN = "\u001B[32m";
+
     public static void main() {
         criarPersonagens();
         exibirMenuInicial();
@@ -49,17 +53,30 @@ public class Main {
         comecarJogo();
     }
 
+    static private void print(String message) {
+        System.out.println("\n" + message);
+    }
+
+    static private void print(String message, String color) {
+        System.out.println(color + "\n" + message + RESET);
+    }
+
+    static private void printSeparador() {
+        print("------------------------------");
+    }
+
     static private void criarPersonagens() {
         String nome;
         String skatistaEstilo = null;
         int idade;
         int opcaoEstilo = 0;
 
-        System.out.println("Informe o nome do seu personagem skatista:");
+        printSeparador();
+        print("Informe o nome do seu personagem skatista:", GREEN);
         nome = scanner.next();
 
         do {
-            System.out.println("Informe o estilo (1: Regular; 2: Goofy):");
+            print("Informe o estilo (1: Regular; 2: Goofy):");
             opcaoEstilo = scanner.nextInt();
             if (opcaoEstilo == 1) {
                 skatistaEstilo = "Regular";
@@ -68,53 +85,54 @@ public class Main {
             }
         } while (opcaoEstilo < 1 || opcaoEstilo > 2);
 
-        System.out.println("Informe a idade:");
+        print("Informe a idade:");
         idade = scanner.nextInt();
 
         skatista = new Skatista(nome, skatistaEstilo, idade);
         oponenteA = new Skatista();
         oponenteB = new Skatista();
 
-        System.out.println("Boas-vindas ao Skate Competition, " + skatista.getNome());
+        print("Boas-vindas ao Skate Competition, " + skatista.getNome());
+        printSeparador();
     }
 
     static private void exibirMenuInicial() {
         int opcao;
         do {
-            System.out.println("Informe a opção");
-            System.out.println("1: Editar personagem");
-            System.out.println("2: Mostrar competidores");
-            System.out.println("3: Iniciar jogo");
+            print("Informe a opção");
+            print("1: Editar personagem");
+            print("2: Mostrar competidores");
+            print("3: Iniciar jogo");
             opcao = scanner.nextInt();
             switch (opcao) {
                 case 1:
-                    System.out.println("Editar personagem");
-                    System.out.println("Informe o novo nome do personagem:");
+                    print("Editar personagem");
+                    print("Informe o novo nome do personagem:");
                     skatista.setNome(scanner.next());
 
                     /**
                      * Corrigir o scanner abaixo
                      * Tem que ser só goofy ou regular
                      */
-                    System.out.println("Informe o novo estilo do personagem:");
+                    print("Informe o novo estilo do personagem:");
                     skatista.setEstilo(scanner.next());
 
-                    System.out.println("Informe a nova idade do personagem:");
+                    print("Informe a nova idade do personagem:");
                     skatista.setIdade(scanner.nextInt());
 
-                    System.out.println("Personagem atualizado!");
-                    System.out.println(skatista);
+                    print("Personagem atualizado!");
+                    print(skatista.toString());
                     break;
                 case 2:
-                    System.out.println(skatista);
-                    System.out.println(oponenteA);
-                    System.out.println(oponenteB);
+                    print(skatista.toString());
+                    print(oponenteA.toString());
+                    print(oponenteB.toString());
                     break;
                 case 3:
-                    System.out.println("O jogo vai começar...");
+                    print("O jogo vai começar...");
                     break;
                 default:
-                    System.out.println("Opção inválida, escolha uma nova opção");
+                    print("Opção inválida, escolha uma nova opção");
             }
         } while (opcao != 3);
     }
@@ -158,7 +176,7 @@ public class Main {
 
         // criei o objeto Etapa linha
         Etapa linha = new Etapa(EtapaNome.LINHA, obstaculosLista);
-        System.out.println("\nETAPA: " + linha.getNome());
+        print("\nETAPA: " + linha.getNome());
 
         // multiplicação da dificuldade da manobra e pontos do obstáculo, alocando num
         // vetor double
@@ -171,7 +189,7 @@ public class Main {
         }
 
         for (i = 0; i < notas.length; i++) {
-            System.out.println("Nota " + (i + 1) + ": " + notas[i]);
+            print("Nota " + (i + 1) + ": " + notas[i]);
         }
 
         // Etapa linha = new Etapa(EtapaNome.LINHA);
@@ -182,22 +200,22 @@ public class Main {
         int opcaoObstaculo = 0;
         Obstaculo[] obstaculosLista = new Obstaculo[5];
 
-        System.out.println("Vai começar a primeira etapa chamada Linha!");
-        System.out.println("Escolha 5 obstáculos da lista abaixo para começar (digite um número de cada vez):");
-        System.out.println("1: " + caixote);
-        System.out.println("2: " + hidrante);
-        System.out.println("3: " + gapComRampa);
-        System.out.println("4: " + piramide);
-        System.out.println("5: " + rampa);
-        System.out.println("6: " + mesa);
-        System.out.println("7: " + corrimao);
-        System.out.println("8: " + corrimaoCurvado);
-        System.out.println("9: " + escada);
+        print("Vai começar a primeira etapa chamada Linha!");
+        print("Escolha 5 obstáculos da lista abaixo para começar (digite um número de cada vez):");
+        print("1: " + caixote);
+        print("2: " + hidrante);
+        print("3: " + gapComRampa);
+        print("4: " + piramide);
+        print("5: " + rampa);
+        print("6: " + mesa);
+        print("7: " + corrimao);
+        print("8: " + corrimaoCurvado);
+        print("9: " + escada);
 
         int i;
         for (i = 0; i < 5; i++) {
             do {
-                System.out.println("Escolha obstáculo de número " + (i + 1));
+                print("Escolha obstáculo de número " + (i + 1));
                 opcaoObstaculo = scanner.nextInt();
                 switch (opcaoObstaculo) {
                     case 1:
@@ -228,14 +246,14 @@ public class Main {
                         obstaculosLista[i] = escada;
                         break;
                 }
-                System.out.println("Você escolheu o obstáculo " + obstaculosLista[i]);
+                print("Você escolheu o obstáculo " + obstaculosLista[i]);
             } while (opcaoObstaculo < 1 || opcaoObstaculo > 9);
         }
 
-        System.out.println("Obstáculos escolhidos: ");
+        print("Obstáculos escolhidos: ");
 
         for (i = 0; i < obstaculosLista.length; i++) {
-            System.out.println("- " + obstaculosLista[i]);
+            print("- " + obstaculosLista[i]);
         }
 
         return obstaculosLista;
@@ -245,27 +263,27 @@ public class Main {
         int opcaoManobra = 0;
         Manobra[] manobrasLista = new Manobra[5];
 
-        System.out.println("Escolha 5 manobras da lista abaixo para começar (digite um número de cada vez):");
-        System.out.println("1: Front Ollie");
-        System.out.println("2: Kickflip");
-        System.out.println("3: Heelflip");
-        System.out.println("4: Fakie flip");
-        System.out.println("5: Board Slide");
-        System.out.println("6: Late Flip");
-        System.out.println("7: Frontside Flip");
-        System.out.println("8: Backside Flip");
-        System.out.println("9: Hard Flip");
-        System.out.println("10: Kickflip 360");
-        System.out.println("11: Cabalerial Flip");
-        System.out.println("12: Nollie Bigspin Heelflip");
-        System.out.println("13: Blunt Slide");
-        System.out.println("14: Board Slide Flip Out");
-        System.out.println("15: Switch Kickflip 720");
+        print("Escolha 5 manobras da lista abaixo para começar (digite um número de cada vez):");
+        print("1: Front Ollie");
+        print("2: Kickflip");
+        print("3: Heelflip");
+        print("4: Fakie flip");
+        print("5: Board Slide");
+        print("6: Late Flip");
+        print("7: Frontside Flip");
+        print("8: Backside Flip");
+        print("9: Hard Flip");
+        print("10: Kickflip 360");
+        print("11: Cabalerial Flip");
+        print("12: Nollie Bigspin Heelflip");
+        print("13: Blunt Slide");
+        print("14: Board Slide Flip Out");
+        print("15: Switch Kickflip 720");
 
         int i;
         for (i = 0; i < 5; i++) {
             do {
-                System.out.println("Escolha a manobra para executar no obstáculo " + obstaculosLista[i].getNome());
+                print("Escolha a manobra para executar no obstáculo " + obstaculosLista[i].getNome());
 
                 opcaoManobra = scanner.nextInt();
                 switch (opcaoManobra) {
@@ -315,7 +333,7 @@ public class Main {
                         manobrasLista[i] = switchKickflip720;
                         break;
                 }
-                System.out.println(
+                print(
                         "Você escolheu a manobra: " + manobrasLista[i] + " para o obstáculo: " + obstaculosLista[i]);
             } while (opcaoManobra < 1 || opcaoManobra > 15);
         }
