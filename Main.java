@@ -1,5 +1,6 @@
 import java.util.Scanner;
 import java.util.Random;
+
 /*
  * Colocar os fluxos do que está acontecendo na tela
  * Pro usuário não se perder
@@ -20,7 +21,7 @@ public class Main {
     static Obstaculo corrimao;
     static Obstaculo corrimaoCurvado;
     static Obstaculo escada;
-    
+
     static Manobra frontsideOllie;
     static Manobra kickflip;
     static Manobra heelflip;
@@ -38,6 +39,8 @@ public class Main {
     static Manobra boardSlideFlipOut;
     static Manobra switchKickflip720;
 
+    static Obstaculo[] obstaculosLista;
+
     public static void main() {
         criarPersonagens();
         exibirMenuInicial();
@@ -45,7 +48,7 @@ public class Main {
         iniciarManobras();
         comecarJogo();
     }
-    
+
     static private void criarPersonagens() {
         String nome;
         String skatistaEstilo = null;
@@ -54,7 +57,7 @@ public class Main {
 
         System.out.println("Informe o nome do seu personagem skatista:");
         nome = scanner.next();
-        
+
         do {
             System.out.println("Informe o estilo (1: Regular; 2: Goofy):");
             opcaoEstilo = scanner.nextInt();
@@ -115,7 +118,8 @@ public class Main {
             }
         } while (opcao != 3);
     }
-    //construtor dos obstáculos
+
+    // construtor dos obstáculos
     static private void iniciarObstaculos() {
         caixote = new Obstaculo(ObstaculoNome.CAIXOTE, 1.7);
         hidrante = new Obstaculo(ObstaculoNome.HIDRANTE, 2);
@@ -127,7 +131,8 @@ public class Main {
         corrimaoCurvado = new Obstaculo(ObstaculoNome.CORRIMAO_CURVADO, 7.4);
         escada = new Obstaculo(ObstaculoNome.ESCADA, 8);
     }
-    //construtor das manobras
+
+    // construtor das manobras
     static private void iniciarManobras() {
         frontsideOllie = new Manobra(ManobraNome.FRONTSIDE_OLLIE, 0.5);
         kickflip = new Manobra(ManobraNome.KICKFLIP, 1);
@@ -145,14 +150,35 @@ public class Main {
         bluntSlide = new Manobra(ManobraNome.BLUNT_SLIDE, 7.8);
         boardSlideFlipOut = new Manobra(ManobraNome.BOARD_SLIDE_FLIP_OUT, 8);
         switchKickflip720 = new Manobra(ManobraNome.SWITCH_KICKFLIP_720, 9.5);
-        }
-    
-    static private void comecarJogo() {
-        /**
-         * Iniciar etapa Linha
-         * Iniciar etapa Impacto (isso tem que mudar de nome)
-         */
+    }
 
+    static private void comecarJogo() {
+        obstaculosLista = escolherObstaculos();
+        Manobra[] manobrasLista = escolherManobras();
+
+        // criei o objeto Etapa linha
+        Etapa linha = new Etapa(EtapaNome.LINHA, obstaculosLista);
+        System.out.println("\nETAPA: " + linha.getNome());
+
+        // multiplicação da dificuldade da manobra e pontos do obstáculo, alocando num
+        // vetor double
+
+        double[] notas = new double[5];
+
+        int i;
+        for (i = 0; i < notas.length; i++) {
+            notas[i] = manobrasLista[i].getDificuldade() * obstaculosLista[i].getPontos();
+        }
+
+        for (i = 0; i < notas.length; i++) {
+            System.out.println("Nota " + (i + 1) + ": " + notas[i]);
+        }
+
+        // Etapa linha = new Etapa(EtapaNome.LINHA);
+        // Etapa impacto = new Etapa(EtapaNome.IMPACTO);
+    }
+
+    static private Obstaculo[] escolherObstaculos() {
         int opcaoObstaculo = 0;
         Obstaculo[] obstaculosLista = new Obstaculo[5];
 
@@ -202,21 +228,21 @@ public class Main {
                         obstaculosLista[i] = escada;
                         break;
                 }
-                System.out.println("Você escolheu o obstáculo " + obstaculosLista[i]);  
+                System.out.println("Você escolheu o obstáculo " + obstaculosLista[i]);
             } while (opcaoObstaculo < 1 || opcaoObstaculo > 9);
         }
-        
-        //criei o objeto Etapa linha
-        Etapa linha = new Etapa(EtapaNome.LINHA, obstaculosLista);
-        System.out.println("\nETAPA: " + linha.getNome());
+
         System.out.println("Obstáculos escolhidos: ");
 
-        for (Obstaculo o : linha.getObstaculos()) {
-            System.out.println("- " + o);
-            }
-        
+        for (i = 0; i < obstaculosLista.length; i++) {
+            System.out.println("- " + obstaculosLista[i]);
+        }
+
+        return obstaculosLista;
+    }
+
+    static private Manobra[] escolherManobras() {
         int opcaoManobra = 0;
-        
         Manobra[] manobrasLista = new Manobra[5];
 
         System.out.println("Escolha 5 manobras da lista abaixo para começar (digite um número de cada vez):");
@@ -235,12 +261,12 @@ public class Main {
         System.out.println("13: Blunt Slide");
         System.out.println("14: Board Slide Flip Out");
         System.out.println("15: Switch Kickflip 720");
-        
+
+        int i;
         for (i = 0; i < 5; i++) {
             do {
-                if (obstaculosLista[i] != null) {
                 System.out.println("Escolha a manobra para executar no obstáculo " + obstaculosLista[i].getNome());
-                }
+
                 opcaoManobra = scanner.nextInt();
                 switch (opcaoManobra) {
                     case 1:
@@ -289,22 +315,11 @@ public class Main {
                         manobrasLista[i] = switchKickflip720;
                         break;
                 }
-                System.out.println("Você escolheu a manobra: "+ manobrasLista[i]+ " para o obstáculo: " + obstaculosLista[i]); 
+                System.out.println(
+                        "Você escolheu a manobra: " + manobrasLista[i] + " para o obstáculo: " + obstaculosLista[i]);
             } while (opcaoManobra < 1 || opcaoManobra > 15);
         }
-        
-        // multiplicação da dificuldade da manobra e pontos do obstáculo, alocando num vetor double
-        double[] notas = new double[5];
-        for (i=0; i<notas.length; i++){
-            notas[i] = manobrasLista[i].getDificuldade() * obstaculosLista[i].getPontos();
-        }
-        
-        for (i=0; i<notas.length; i++) {
-        System.out.println("Nota " + (i+1) + ": " + notas[i]);
-        }
-        
-        
-        // Etapa linha = new Etapa(EtapaNome.LINHA);
-        // Etapa impacto = new Etapa(EtapaNome.IMPACTO);
+
+        return manobrasLista;
     }
 }
