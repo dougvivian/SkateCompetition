@@ -39,6 +39,8 @@ public class Main {
     static Manobra boardSlideFlipOut;
     static Manobra switchKickflip720;
 
+    static Random random = new Random();
+
     static Obstaculo[] obstaculosLista;
 
     static final String RESET = "\u001B[0m";
@@ -73,7 +75,7 @@ public class Main {
 
         printSeparador();
         print("Informe o nome do seu personagem skatista:", GREEN);
-        nome = scanner.next();
+        nome = scanner.nextLine();
 
         do {
             print("Informe o estilo (1: Regular; 2: Goofy):");
@@ -92,7 +94,7 @@ public class Main {
         oponenteA = new Skatista();
         oponenteB = new Skatista();
 
-        print("Boas-vindas ao Skate Competition, " + skatista.getNome());
+        print("Boas-vindas ao Skate Competition, " + skatista.getNome(), GREEN);
         printSeparador();
     }
 
@@ -103,25 +105,36 @@ public class Main {
             print("1: Editar personagem");
             print("2: Mostrar competidores");
             print("3: Iniciar jogo");
+
             opcao = scanner.nextInt();
+
             switch (opcao) {
                 case 1:
-                    print("Editar personagem");
-                    print("Informe o novo nome do personagem:");
-                    skatista.setNome(scanner.next());
+                    String novoNome;
 
-                    /**
-                     * Corrigir o scanner abaixo
-                     * Tem que ser só goofy ou regular
-                     */
-                    print("Informe o novo estilo do personagem:");
-                    skatista.setEstilo(scanner.next());
+                    print("Editar personagem", GREEN);
+                    print("Informe o novo nome do personagem:");
+                    novoNome = scanner.nextLine();
+                    skatista.setNome(novoNome);
+
+                    int novoEstiloOpcao = scanner.nextInt();
+                    do {
+                        print("Informe o novo estilo (1: Regular; 2: Goofy):");
+                        novoEstiloOpcao = scanner.nextInt();
+                        if (novoEstiloOpcao == 1) {
+                            skatista.setEstilo("Regular");
+                        } else if (novoEstiloOpcao == 2) {
+                            skatista.setEstilo("Goofy");
+                        }
+                    } while (novoEstiloOpcao < 1 || novoEstiloOpcao > 2);
 
                     print("Informe a nova idade do personagem:");
-                    skatista.setIdade(scanner.nextInt());
+                    int novaIdade = scanner.nextInt();
+                    skatista.setIdade(novaIdade);
 
                     print("Personagem atualizado!");
                     print(skatista.toString());
+                    printSeparador();
                     break;
                 case 2:
                     print(skatista.toString());
@@ -171,37 +184,34 @@ public class Main {
     }
 
     static private void comecarJogo() {
-        obstaculosLista = escolherObstaculos();
-        Manobra[] manobrasLista = escolherManobras();
+        obstaculosLista = escolherObstaculos(5);
 
-        // criei o objeto Etapa linha
         Etapa linha = new Etapa(EtapaNome.LINHA, obstaculosLista);
-        print("\nETAPA: " + linha.getNome());
+        print("ETAPA: " + linha.getNome(), GREEN);
 
-        // multiplicação da dificuldade da manobra e pontos do obstáculo, alocando num
-        // vetor double
+        skatista.adicionarNota(calcularNota());
+        oponenteA.adicionarNota(calcularNota());
+        oponenteB.adicionarNota(calcularNota());
 
-        double[] notas = new double[5];
+        //
 
-        int i;
-        for (i = 0; i < notas.length; i++) {
-            notas[i] = manobrasLista[i].getDificuldade() * obstaculosLista[i].getPontos();
-        }
+        obstaculosLista = escolherObstaculos(1);
 
-        for (i = 0; i < notas.length; i++) {
-            print("Nota " + (i + 1) + ": " + notas[i]);
-        }
+        Etapa impacto = new Etapa(EtapaNome.IMPACTO, obstaculosLista);
+        print("Etapa: " + impacto.getNome(), GREEN);
 
-        // Etapa linha = new Etapa(EtapaNome.LINHA);
-        // Etapa impacto = new Etapa(EtapaNome.IMPACTO);
+        skatista.adicionarNota(calcularNota());
+        oponenteA.adicionarNota(calcularNota());
+        oponenteB.adicionarNota(calcularNota());
     }
 
-    static private Obstaculo[] escolherObstaculos() {
+    static private Obstaculo[] escolherObstaculos(int quantidadeObstaculos) {
         int opcaoObstaculo = 0;
-        Obstaculo[] obstaculosLista = new Obstaculo[5];
+        Obstaculo[] obstaculosLista = new Obstaculo[quantidadeObstaculos];
 
         print("Vai começar a primeira etapa chamada Linha!");
-        print("Escolha 5 obstáculos da lista abaixo para começar (digite um número de cada vez):");
+        print("Escolha " + quantidadeObstaculos
+                + " obstáculos da lista abaixo para começar (digite um número de cada vez):");
         print("1: " + caixote);
         print("2: " + hidrante);
         print("3: " + gapComRampa);
@@ -213,7 +223,7 @@ public class Main {
         print("9: " + escada);
 
         int i;
-        for (i = 0; i < 5; i++) {
+        for (i = 0; i < quantidadeObstaculos; i++) {
             do {
                 print("Escolha obstáculo de número " + (i + 1));
                 opcaoObstaculo = scanner.nextInt();
@@ -338,6 +348,38 @@ public class Main {
             } while (opcaoManobra < 1 || opcaoManobra > 15);
         }
 
+        print("Manobras escolhidas:");
+
+        for (i = 0; i < manobrasLista.length; i++) {
+            print("- " + manobrasLista[i]);
+        }
+
         return manobrasLista;
+    }
+
+    static private double calcularNota() {
+        double notaLinha = 0.0;
+        double numeroAleatorio;
+        Manobra[] manobrasLista = escolherManobras();
+
+        int i;
+        for (i = 0; i < 5; i++) {
+            numeroAleatorio = random.nextDouble(9) + 1;
+
+            if (numeroAleatorio >= manobrasLista[i].getDificuldade()) {
+                double pontos = manobrasLista[i].getDificuldade() * obstaculosLista[i].getPontos();
+
+                notaLinha = notaLinha + pontos;
+
+                print("Parabéns! Você acertou a manobra e ganhou " + pontos + " pontos no obstáculo "
+                        + obstaculosLista[i].getNome() + " realizando a manobra " + manobrasLista[i].getManobraNome(),
+                        GREEN);
+            } else {
+                print("Que pena! Você errou a manobra no obstáculo " + obstaculosLista[i].getNome()
+                        + " realizando a manobra " + manobrasLista[i].getManobraNome(), RED);
+            }
+        }
+
+        return notaLinha;
     }
 }
