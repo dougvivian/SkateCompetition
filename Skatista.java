@@ -64,7 +64,7 @@ public class Skatista {
         this.idade = idade;
     }
 
-    public void adicionarNota(int nota) {
+    public void adicionarNota(double nota) {
         if (this.nota[0] > 0) {
             this.nota[1] = nota;
             return;
