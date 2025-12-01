@@ -86,12 +86,12 @@ public class Main {
         int opcaoEstilo = 0;
 
         printSeparador();
-        print("Informe o nome do seu personagem skatista:", GREEN);
+        print("Informe o nome:", GREEN);
         nome = scanner.nextLine();
 
         do {
-            print("Informe o estilo (1: Regular; 2: Goofy):");
-            print("Regular é o skatista que usa o pé esquerdo na frente do skate e o pé direito atrás. E goofy é o contrário, com o pé direito na frente e o esquerdo atrás.");
+            print("Existem dois estilos de skatistas: Regular e Goofy. Regular é o skatista que usa o pé esquerdo na frente do skate e o pé direito atrás. E goofy é o contrário, pé direito na frente e o esquerdo atrás.");
+            print("Escolha seu estilo. Digite 1 para Regular ou 2 para Goofy:", GREEN);
             opcaoEstilo = scanner.nextInt();
             if (opcaoEstilo == 1) {
                 skatistaEstilo = "Regular";
@@ -216,7 +216,7 @@ public class Main {
         int i;
         for (i = 0; i < quantidadeObstaculos; i++) {
             do {
-                print("Escolha obstáculo de número " + (i + 1));
+                print("Escolha obstáculo de número " + (i + 1), GREEN);
                 opcaoObstaculo = scanner.nextInt();
                 switch (opcaoObstaculo) {
                     case 1:
@@ -479,7 +479,7 @@ public class Main {
     static private void comecarEtapaLinha() {
         Etapa linha = new Etapa(EtapaNome.LINHA, obstaculosLista);
         print("Vai começar a etapa " + linha.getNome(), GREEN);
-        print("Nessa etapa, você e seus oponentes irão escolher 5 obstáculos e 5 manobras para executar. Se acertar a manobra no obstáculo, você ganha a quantidade de pontos correspondente à dificuldade da manobra multiplicada pela pontuação do obstáculo. Se errar a manobra, não ganha pontos.");
+        print("Nessa etapa, você e seus oponentes irão escolher 5 obstáculos, e depois 5 manobras para executar. Cada manobra é executada em um obstáculo na mesma ordem em que foram escolhidas. Se acertar a manobra no obstáculo, você ganha pontos. Eles são a dificuldade da manobra multiplicada pela pontuação do obstáculo. Se errar a manobra, não ganha nada.");
 
         obstaculosLista = escolherObstaculos(5);
         manobrasLista = escolherManobras(5);
@@ -507,7 +507,7 @@ public class Main {
         Etapa impacto = new Etapa(EtapaNome.IMPACTO, obstaculosLista);
         printSeparador();
         print("Vai começar a etapa " + impacto.getNome(), GREEN);
-        print("Essa etapa é igual à anterior, porém vocês escolhem apenas 1 obstáculo.");
+        print("Essa etapa é igual à anterior, porém vocês escolhem apenas 1 obstáculo e 1 manobra.");
 
         obstaculosLista = escolherObstaculos(1);
         manobrasLista = escolherManobras(1);
