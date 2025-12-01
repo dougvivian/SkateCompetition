@@ -87,7 +87,10 @@ public class Main {
         nome = scanner.nextLine();
 
         do {
-            print("Existem dois estilos de skatistas: Regular e Goofy. Regular é o skatista que usa o pé esquerdo na frente do skate e o pé direito atrás. E goofy é o contrário, pé direito na frente e o esquerdo atrás.");
+            print("Existem dois estilos de skatistas: Regular e Goofy.\n" +
+            "Regular é o skatista que usa o pé esquerdo na frente do skate e o pé direito atrás.\n" +
+            "E goofy é o contrário, pé direito na frente e o esquerdo atrás.");
+
             print("Escolha seu estilo. Digite 1 para Regular ou 2 para Goofy:", GREEN);
             opcaoEstilo = scanner.nextInt();
             if (opcaoEstilo == 1) {
@@ -203,15 +206,15 @@ public class Main {
         print("Escolha " + quantidadeObstaculos
                 + (quantidadeObstaculos == 1 ? " obstáculo " : " obstáculos ")
                 + "da lista abaixo (digite um número de cada vez):");
-        print("1: " + caixote);
-        print("2: " + hidrante);
-        print("3: " + gapComRampa);
-        print("4: " + piramide);
-        print("5: " + rampa);
-        print("6: " + mesa);
-        print("7: " + corrimao);
-        print("8: " + corrimaoCurvado);
-        print("9: " + escada);
+        print("1: " + caixote + "\n" +
+        "2: " + hidrante + "\n" +
+        "3: " + gapComRampa + "\n" +
+        "4: " + piramide + "\n" +
+        "5: " + rampa + "\n" +
+        "6: " + mesa + "\n" +
+        "7: " + corrimao + "\n" +
+        "8: " + corrimaoCurvado + "\n" +
+        "9: " + escada);
 
         int i;
         for (i = 0; i < quantidadeObstaculos; i++) {
@@ -266,24 +269,24 @@ public class Main {
         int quantidadeManobras = obstaculosLista.length;
         Manobra[] manobrasLista = new Manobra[quantidadeManobras];
 
-        print("Escolha " + quantidadeManobras
-                + (quantidadeManobras == 1 ? " manobra " : " manobras ")
-                + "da lista abaixo (digite um número de cada vez):", GREEN);
-        print("1: " + frontsideOllie);
-        print("2: " + kickflip);
-        print("3: " + heelflip);
-        print("4: " + fakieFlip);
-        print("5: " + boardSlide);
-        print("6: " + lateFlip);
-        print("7: " + frontsideFlip);
-        print("8: " + backsideFlip);
-        print("9: " + hardFlip);
-        print("10: " + kickflip360);
-        print("11: " + cabalerialFlip);
-        print("12: " + nollieBigspinHeelflip);
-        print("13: " + bluntSlide);
-        print("14: " + boardSlideFlipOut);
-        print("15: " + switchKickflip720);
+        print("Escolha " + quantidadeManobras + (quantidadeManobras == 1 ? " manobra " : " manobras ") +
+        "da lista abaixo (digite um número de cada vez):", GREEN);
+                
+        print("1: " + frontsideOllie + "\n" +
+        "2: " + kickflip + "\n" +
+        "3: " + heelflip + "\n" +
+        "4: " + fakieFlip + "\n" +
+        "5: " + boardSlide + "\n" +
+        "6: " + lateFlip + "\n" +
+        "7: " + frontsideFlip + "\n" +
+        "8: " + backsideFlip + "\n" +
+        "9: " + hardFlip + "\n" +
+        "10: " + kickflip360 + "\n" +
+        "11: " + cabalerialFlip + "\n" +
+        "12: " + nollieBigspinHeelflip + "\n" +
+        "13: " + bluntSlide + "\n" +
+        "14: " + boardSlideFlipOut + "\n" +
+        "15: " + switchKickflip720);
 
         int i;
         for (i = 0; i < quantidadeManobras; i++) {
@@ -487,7 +490,11 @@ public class Main {
 
     static private void comecarEtapaLinha() {
         print("Vai começar a etapa Linha", GREEN);
-        print("Nessa etapa, você e seus oponentes irão escolher 5 obstáculos, e depois 5 manobras para executar. Cada manobra é executada em um obstáculo na mesma ordem em que foram escolhidas. Se acertar a manobra no obstáculo, você ganha pontos. Eles são a dificuldade da manobra multiplicada pela pontuação do obstáculo. Se errar a manobra, não ganha nada.");
+        print("Nessa etapa, você e seus oponentes irão escolher 5 obstáculos, e depois 5 manobras para executar.\n" +
+        "Cada manobra é executada em um obstáculo na mesma ordem em que foram escolhidas.\n" +
+        "Se acertar a manobra no obstáculo, você ganha pontos.\n" +
+        "Eles são a dificuldade da manobra multiplicada pela pontuação do obstáculo.\n" +
+        "Se errar a manobra, não ganha nada.");
 
         Etapa linha = new Etapa(EtapaNome.LINHA);
 
