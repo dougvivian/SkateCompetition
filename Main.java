@@ -91,6 +91,7 @@ public class Main {
 
         do {
             print("Informe o estilo (1: Regular; 2: Goofy):");
+            print("Regular é o skatista que usa o pé esquerdo na frente do skate e o pé direito atrás. E goofy é o contrário, com o pé direito na frente e o esquerdo atrás.");
             opcaoEstilo = scanner.nextInt();
             if (opcaoEstilo == 1) {
                 skatistaEstilo = "Regular";
@@ -200,7 +201,8 @@ public class Main {
         Obstaculo[] obstaculosLista = new Obstaculo[quantidadeObstaculos];
 
         print("Escolha " + quantidadeObstaculos
-                + " obstáculos da lista abaixo para começar (digite um número de cada vez):");
+                + (quantidadeObstaculos == 1 ? " obstáculo " : " obstáculos ")
+                + "da lista abaixo (digite um número de cada vez):");
         print("1: " + caixote);
         print("2: " + hidrante);
         print("3: " + gapComRampa);
@@ -264,7 +266,8 @@ public class Main {
         manobrasLista = new Manobra[quantidadeManobras];
 
         print("Escolha " + quantidadeManobras
-                + " manobras da lista abaixo para começar (digite um número de cada vez):", GREEN);
+                + (quantidadeManobras == 1 ? " manobra " : " manobras ")
+                + "da lista abaixo (digite um número de cada vez):", GREEN);
         print("1: " + frontsideOllie);
         print("2: " + kickflip);
         print("3: " + heelflip);
@@ -475,7 +478,8 @@ public class Main {
 
     static private void comecarEtapaLinha() {
         Etapa linha = new Etapa(EtapaNome.LINHA, obstaculosLista);
-        print("Vai começar a etapa chamada " + linha.getNome(), GREEN);
+        print("Vai começar a etapa " + linha.getNome(), GREEN);
+        print("Nessa etapa, você e seus oponentes irão escolher 5 obstáculos e 5 manobras para executar. Se acertar a manobra no obstáculo, você ganha a quantidade de pontos correspondente à dificuldade da manobra multiplicada pela pontuação do obstáculo. Se errar a manobra, não ganha pontos.");
 
         obstaculosLista = escolherObstaculos(5);
         manobrasLista = escolherManobras(5);
@@ -501,19 +505,26 @@ public class Main {
 
     static private void comecarEtapaImpacto() {
         Etapa impacto = new Etapa(EtapaNome.IMPACTO, obstaculosLista);
-        print("Vai começar a etapa chamada " + impacto.getNome(), GREEN);
+        printSeparador();
+        print("Vai começar a etapa " + impacto.getNome(), GREEN);
+        print("Essa etapa é igual à anterior, porém vocês escolhem apenas 1 obstáculo.");
 
         obstaculosLista = escolherObstaculos(1);
         manobrasLista = escolherManobras(1);
-
         print("Vamos ver as suas notas", GREEN);
         pausa();
         skatista.adicionarNota(calcularNota(1));
         pausa();
+
+        obstaculosLista = escolherObstaculosAleatorios(1);
+        manobrasLista = escolherManobrasAleatorias(1);
         print("Vamos ver as notas do oponente A", GREEN);
         pausa();
         oponenteA.adicionarNota(calcularNota(1));
         pausa();
+
+        obstaculosLista = escolherObstaculosAleatorios(1);
+        manobrasLista = escolherManobrasAleatorias(1);
         print("Vamos ver as notas do oponente B", GREEN);
         pausa();
         oponenteB.adicionarNota(calcularNota(1));
