@@ -118,6 +118,7 @@ public class Main {
             print("3: Iniciar jogo");
 
             opcao = scanner.nextInt();
+            scanner.nextLine(); // Bug do Java: Consumir a quebra de linha pendente
 
             switch (opcao) {
                 case 1:
@@ -128,10 +129,11 @@ public class Main {
                     novoNome = scanner.nextLine();
                     skatista.setNome(novoNome);
 
-                    int novoEstiloOpcao = scanner.nextInt();
+                    int novoEstiloOpcao;
                     do {
                         print("Informe o novo estilo (1: Regular; 2: Goofy):");
                         novoEstiloOpcao = scanner.nextInt();
+                        scanner.nextLine(); // Bug do Java: Consumir a quebra de linha pendente
                         if (novoEstiloOpcao == 1) {
                             skatista.setEstilo("Regular");
                         } else if (novoEstiloOpcao == 2) {
@@ -141,6 +143,7 @@ public class Main {
 
                     print("Informe a nova idade do personagem:");
                     int novaIdade = scanner.nextInt();
+                    scanner.nextLine(); // Bug do Java: Consumir a quebra de linha pendente
                     skatista.setIdade(novaIdade);
 
                     print("Personagem atualizado!");
