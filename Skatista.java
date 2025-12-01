@@ -91,6 +91,10 @@ public class Skatista {
         }
     }
 
+    public double getNotaFinal() {
+        return this.nota[0] + this.nota[1];
+    }
+
     public String toString() {
         return "Nome: " + this.nome + "; Estilo: " + this.skatistaEstilo + "; Idade: " + this.idade;
     }
