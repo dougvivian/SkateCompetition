@@ -37,7 +37,6 @@ public class Main {
 
     static Random random = new Random();
 
-    static final String RED = "\u001B[31m";
     static final String GREEN = "\u001B[32m";
 
     public static void main() {
@@ -475,7 +474,7 @@ public class Main {
                 + obstaculosLista[i].getNome() + " e ganhou " + manobraPontos + " pontos.", GREEN);
             } else {
                 print("Que pena! " + nome + " errou a manobra " + manobrasLista[i].getManobraNome() + " no obstáculo "
-                + obstaculosLista[i].getNome(), RED);
+                + obstaculosLista[i].getNome());
             }
         }
 
@@ -607,7 +606,7 @@ public class Main {
                 print("3º Lugar: " + oponenteA.getNome() + " - Nota Final: " + notaFinalOponenteA);
             }
         } else if (notaFinalOponenteA >= notaFinalSkatista && notaFinalOponenteA >= notaFinalOponenteB) {
-            print("1º Lugar: " + oponenteA.getNome() + " - Nota Final: " + notaFinalOponenteA, RED);
+            print("1º Lugar: " + oponenteA.getNome() + " - Nota Final: " + notaFinalOponenteA);
             if (notaFinalSkatista >= notaFinalOponenteB) {
                 print("2º Lugar: " + skatista.getNome() + " - Nota Final: " + notaFinalSkatista);
                 print("3º Lugar: " + oponenteB.getNome() + " - Nota Final: " + notaFinalOponenteB);
@@ -616,7 +615,7 @@ public class Main {
                 print("3º Lugar: " + skatista.getNome() + " - Nota Final: " + notaFinalSkatista);
             }
         } else {
-            print("1º Lugar: " + oponenteB.getNome() + " - Nota Final: " + notaFinalOponenteB, RED);
+            print("1º Lugar: " + oponenteB.getNome() + " - Nota Final: " + notaFinalOponenteB);
             if (notaFinalSkatista >= notaFinalOponenteA) {
                 print("2º Lugar: " + skatista.getNome() + " - Nota Final: " + notaFinalSkatista);
                 print("3º Lugar: " + oponenteA.getNome() + " - Nota Final: " + notaFinalOponenteA);
