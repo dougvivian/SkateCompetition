@@ -37,7 +37,6 @@ public class Main {
 
     static Random random = new Random();
 
-    static final String RESET = "\u001B[0m";
     static final String RED = "\u001B[31m";
     static final String GREEN = "\u001B[32m";
 
@@ -56,7 +55,7 @@ public class Main {
     }
 
     static private void print(String message, String color) {
-        System.out.println(color + "\n" + message + RESET);
+        System.out.println(color + "\n" + message);
     }
 
     static private void printSeparador() {
