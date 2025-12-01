@@ -41,9 +41,6 @@ public class Main {
 
     static Random random = new Random();
 
-    static Obstaculo[] obstaculosLista;
-    static Manobra[] manobrasLista;
-
     static final String RESET = "\u001B[0m";
     static final String RED = "\u001B[31m";
     static final String GREEN = "\u001B[32m";
@@ -261,9 +258,10 @@ public class Main {
         return obstaculosLista;
     }
 
-    static private Manobra[] escolherManobras(int quantidadeManobras) {
+    static private Manobra[] escolherManobras(Obstaculo[] obstaculosLista) {
         int opcaoManobra = 0;
-        manobrasLista = new Manobra[quantidadeManobras];
+        int quantidadeManobras = obstaculosLista.length;
+        Manobra[] manobrasLista = new Manobra[quantidadeManobras];
 
         print("Escolha " + quantidadeManobras
                 + (quantidadeManobras == 1 ? " manobra " : " manobras ")
@@ -283,6 +281,7 @@ public class Main {
         print("13: " + bluntSlide);
         print("14: " + boardSlideFlipOut);
         print("15: " + switchKickflip720);
+
         int i;
         for (i = 0; i < quantidadeManobras; i++) {
             do {
@@ -393,7 +392,7 @@ public class Main {
 
     static private Manobra[] escolherManobrasAleatorias(int quantidadeManobras) {
         int opcaoManobra = 0;
-        manobrasLista = new Manobra[quantidadeManobras];
+        Manobra[] manobrasLista = new Manobra[quantidadeManobras];
 
         int i;
         for (i = 0; i < quantidadeManobras; i++) {
@@ -450,12 +449,19 @@ public class Main {
         return manobrasLista;
     }
 
-    static private double calcularNota(int quantidade) {
+    static private double calcularNota(
+            Obstaculo[] obstaculosLista,
+            Manobra[] manobrasLista) {
+
         double notaTotal = 0.0;
         double numeroAleatorio;
 
+        for (int i = 0; i < manobrasLista.length; i++) {
+            print("- " + manobrasLista[i]);
+        }
+
         int i;
-        for (i = 0; i < quantidade; i++) {
+        for (i = 0; i < obstaculosLista.length; i++) {
             numeroAleatorio = random.nextDouble(9) + 1;
 
             if (numeroAleatorio >= manobrasLista[i].getDificuldade()) {
@@ -477,57 +483,104 @@ public class Main {
     }
 
     static private void comecarEtapaLinha() {
-        Etapa linha = new Etapa(EtapaNome.LINHA, obstaculosLista);
-        print("Vai começar a etapa " + linha.getNome(), GREEN);
+        print("Vai começar a etapa Linha", GREEN);
         print("Nessa etapa, você e seus oponentes irão escolher 5 obstáculos, e depois 5 manobras para executar. Cada manobra é executada em um obstáculo na mesma ordem em que foram escolhidas. Se acertar a manobra no obstáculo, você ganha pontos. Eles são a dificuldade da manobra multiplicada pela pontuação do obstáculo. Se errar a manobra, não ganha nada.");
 
-        obstaculosLista = escolherObstaculos(5);
-        manobrasLista = escolherManobras(5);
+        Etapa linha = new Etapa(EtapaNome.LINHA);
+
+        // Skatista
+
+        Obstaculo[] obstaculosLista = escolherObstaculos(5);
+        Manobra[] manobrasLista = escolherManobras(obstaculosLista);
+        linha.setObstaculos(obstaculosLista);
+        linha.setManobras(manobrasLista);
+
         print("Vamos ver as suas notas", GREEN);
         pausa();
-        skatista.adicionarNota(calcularNota(5));
+        double notaSkatista = calcularNota(
+                linha.getObstaculos(),
+                linha.getManobras());
+        skatista.adicionarNota(notaSkatista);
         pausa();
+
+        // Oponente A
 
         obstaculosLista = escolherObstaculosAleatorios(5);
         manobrasLista = escolherManobrasAleatorias(5);
+        linha.setObstaculos(obstaculosLista);
+        linha.setManobras(manobrasLista);
+
         print("Vamos ver as notas do oponente A", GREEN);
         pausa();
-        oponenteA.adicionarNota(calcularNota(5));
+        double notaOponenteA = calcularNota(
+                linha.getObstaculos(),
+                linha.getManobras());
+        oponenteA.adicionarNota(notaOponenteA);
         pausa();
+
+        // Oponente B
 
         obstaculosLista = escolherObstaculosAleatorios(5);
         manobrasLista = escolherManobrasAleatorias(5);
+        linha.setObstaculos(obstaculosLista);
+        linha.setManobras(manobrasLista);
+
         print("Vamos ver as notas do oponente B", GREEN);
         pausa();
-        oponenteB.adicionarNota(calcularNota(5));
+        double notaOponenteB = calcularNota(
+                linha.getObstaculos(),
+                linha.getManobras());
+        oponenteB.adicionarNota(notaOponenteB);
         pausa();
     }
 
     static private void comecarEtapaImpacto() {
-        Etapa impacto = new Etapa(EtapaNome.IMPACTO, obstaculosLista);
-        printSeparador();
-        print("Vai começar a etapa " + impacto.getNome(), GREEN);
+        print("Vai começar a etapa Impacto", GREEN);
         print("Essa etapa é igual à anterior, porém vocês escolhem apenas 1 obstáculo e 1 manobra.");
 
-        obstaculosLista = escolherObstaculos(1);
-        manobrasLista = escolherManobras(1);
+        Etapa impacto = new Etapa(EtapaNome.IMPACTO);
+
+        // Skatista
+
+        Obstaculo[] obstaculosLista = escolherObstaculos(1);
+        Manobra[] manobrasLista = escolherManobras(obstaculosLista);
+        impacto.setObstaculos(obstaculosLista);
+        impacto.setManobras(manobrasLista);
+
         print("Vamos ver as suas notas", GREEN);
         pausa();
-        skatista.adicionarNota(calcularNota(1));
+        double notaSkatista = calcularNota(
+                impacto.getObstaculos(),
+                impacto.getManobras());
+        skatista.adicionarNota(notaSkatista);
         pausa();
+
+        // Oponente A
 
         obstaculosLista = escolherObstaculosAleatorios(1);
         manobrasLista = escolherManobrasAleatorias(1);
+        impacto.setObstaculos(obstaculosLista);
+        impacto.setManobras(manobrasLista);
         print("Vamos ver as notas do oponente A", GREEN);
         pausa();
-        oponenteA.adicionarNota(calcularNota(1));
+        double notaOponenteA = calcularNota(
+                impacto.getObstaculos(),
+                impacto.getManobras());
+        oponenteA.adicionarNota(notaOponenteA);
         pausa();
+
+        // Oponente B
 
         obstaculosLista = escolherObstaculosAleatorios(1);
         manobrasLista = escolherManobrasAleatorias(1);
+        impacto.setObstaculos(obstaculosLista);
+        impacto.setManobras(manobrasLista);
         print("Vamos ver as notas do oponente B", GREEN);
         pausa();
-        oponenteB.adicionarNota(calcularNota(1));
+        double notaOponenteB = calcularNota(
+                impacto.getObstaculos(),
+                impacto.getManobras());
+        oponenteB.adicionarNota(notaOponenteB);
         pausa();
     }
 
